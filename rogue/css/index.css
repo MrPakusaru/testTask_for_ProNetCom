@@ -1,0 +1,63 @@
+* { box-sizing: border-box; }
+body, html { height: 100%; }
+body { background-color: #000000; color: #ffffff; }
+
+/*noinspection CssNoGenericFontName*/
+h1 { font-family: "Playfair Display"; font-size: 30px; padding: 10px 0; margin: 0; }
+.field-box { border: 2px solid #d0d0d0; float: left; }
+.field {
+    width: 1024px;
+    height: 640px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+.field .row * {
+    flex-grow: 1;
+    background-size: 100% 100%;
+}
+
+.field .tileW { background-image: url(../images/tile-W.png); }
+.field .tile { background-image: url(../images/tile-.png); z-index: 5; }
+.field .tileHP { background-image: url(../images/tileH-P.png); z-index: 9; }
+.field .tileSW { background-image: url(../images/tile-SW.png); z-index: 9; }
+
+
+.field .tileE {
+    background-image: url(../images/tile-E.png);
+    z-index: 10;
+    position: relative;
+    --health: 100;
+}
+.field .tileP {
+    background-image: url(../images/tile-P.png);
+    z-index: 10;
+    position: relative;
+    --health: 100;
+}
+
+.tileE:after, .tileP:after {
+    content:'';
+    height: 3px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    z-index: 11;
+}
+
+.field .tileE:after {
+    background-color: #ff0000;
+    width: calc(1% * var(--health));
+
+}
+.field .tileP:after {
+    background-color: #00ff00;
+    width: calc(1% * var(--health));
+}
+.inventory-box { border: 2px solid #d0d0d0; float: left; }
+.inventory { position: relative; width: 800px; height: 32px; }
+.cl { clear: both; display: block; }
